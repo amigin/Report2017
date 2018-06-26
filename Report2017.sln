@@ -1,0 +1,29 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Report2016", "src\Report2016\Report2016.csproj", "{0163201A-BE18-4AF5-891D-ECC898513FDD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reports2016.Domains", "src\Reports2016.Domains\Reports2016.Domains.csproj", "{3859910F-5158-4971-B8E7-CF08EC35F1B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Report2016.AzureRepositories", "src\Report2016.AzureRepositories\Report2016.AzureRepositories.csproj", "{5FCB472E-630D-4359-9E5F-05905B35F02C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0163201A-BE18-4AF5-891D-ECC898513FDD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0163201A-BE18-4AF5-891D-ECC898513FDD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0163201A-BE18-4AF5-891D-ECC898513FDD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0163201A-BE18-4AF5-891D-ECC898513FDD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3859910F-5158-4971-B8E7-CF08EC35F1B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3859910F-5158-4971-B8E7-CF08EC35F1B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3859910F-5158-4971-B8E7-CF08EC35F1B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3859910F-5158-4971-B8E7-CF08EC35F1B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FCB472E-630D-4359-9E5F-05905B35F02C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FCB472E-630D-4359-9E5F-05905B35F02C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FCB472E-630D-4359-9E5F-05905B35F02C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FCB472E-630D-4359-9E5F-05905B35F02C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1002" height="288" viewBox="0 0 1002 288">
+    <g fill="#EBEDEF" fill-rule="evenodd">
+        <path d="M127 0H0v127l43 43V43h127z"/>
+        <path d="M237 110H110v127l43 43V153h127z" opacity=".64"/>
+        <path d="M411 2l90 90v58l-90-90V2zm180 0v58l-90 90V92l90-90zM402 288l79-79h-58l-79 79z"/>
+        <path d="M875 0h127v127l-43 43V43H832z" opacity=".64"/>
+        <path d="M765 110h127v127l-43 43V153H722z"/>
+        <path d="M600 288l-79-79h58l79 79z" opacity=".64"/>
+    </g>
+</svg>
