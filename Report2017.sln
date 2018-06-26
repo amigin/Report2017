@@ -1,11 +1,13 @@
-
+﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Report2016", "src\Report2016\Report2016.csproj", "{0163201A-BE18-4AF5-891D-ECC898513FDD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Report2017", "src\Report2017\Report2017.csproj", "{0163201A-BE18-4AF5-891D-ECC898513FDD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reports2016.Domains", "src\Reports2016.Domains\Reports2016.Domains.csproj", "{3859910F-5158-4971-B8E7-CF08EC35F1B8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reports2017.Domains", "src\Reports2017.Domains\Reports2017.Domains.csproj", "{3859910F-5158-4971-B8E7-CF08EC35F1B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Report2016.AzureRepositories", "src\Report2016.AzureRepositories\Report2016.AzureRepositories.csproj", "{5FCB472E-630D-4359-9E5F-05905B35F02C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Report2017.AzureRepositories", "src\Report2017.AzureRepositories\Report2017.AzureRepositories.csproj", "{5FCB472E-630D-4359-9E5F-05905B35F02C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution items", "Solution items", "{42E16FC7-4FA1-4BB0-8AA8-874ECA45C767}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

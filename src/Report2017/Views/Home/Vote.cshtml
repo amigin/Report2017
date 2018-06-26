@@ -1,0 +1,103 @@
+﻿@model Report2017.Models.MyVoteContract
+
+@{
+    ViewData["Title"] = "Lykke Report 2017";
+}
+
+<section class="section">
+    <div class="container">
+        <div class="r_block">
+            @if (Model.Name != null)
+            {
+                <div class="user_badge user_badge--small">
+                    <div class="user_badge__img">
+                        <img src="/img/user_default.svg" alt="user" width="40" height="40">
+                    </div>
+                    <div class="user_badge__title">@Model.Name</div>
+                </div>
+            }
+
+            <form action="@Url.Action("Vote")" class="form form_vote form--simple" method="post">
+
+                @if (!string.IsNullOrEmpty(Model.Token))
+                {
+                    <input type="hidden" name="Token" value="@Model.Token"/>
+                }
+
+                <h5 class="text-center">Do you accept the 2017 Annual Report?</h5>
+                
+                <div class="form-group">
+                    <div class="radio-group">
+                        <div class="radio radio--plate">
+                            <input type="radio" name="Option1" id="option1_1" value="Yes">
+                            <label for="option1_1" class="control-label">Yes</label>
+                        </div>
+                        <div class="radio radio--plate">
+                            <input type="radio" name="Option1" id="option1_2" value="No">
+                            <label for="option1_2" class="control-label">No</label>
+                        </div>
+                    </div>
+                    
+                    <div class="center-block">
+                        @Html.ValidationMessageFor(m => m.Option1)
+                    </div>
+                </div>
+                
+                <h5 class="text-center">As a coinholder, would you be interested in testing the redesign of Lykke's mobile</h5>
+                
+                <div class="form-group">
+                    <div class="radio-group">
+                        <div class="radio radio--plate">
+                            <input type="radio" name="Option2" id="option2_1" value="Yes">
+                            <label for="option2_1" class="control-label">Yes</label>
+                        </div>
+                        <div class="radio radio--plate">
+                            <input type="radio" name="Option2" id="option2_2" value="No">
+                            <label for="option2_2" class="control-label">No</label>
+                        </div>
+                    </div>
+                    
+                    <div class="center-block">
+                        @Html.ValidationMessageFor(m => m.Option2)
+                    </div>
+                </div>
+
+                <h5 class="text-center">Do you have any question following the 2018 Coinholder meeting?</h5>
+
+                <div class="form-group">
+                    <div class="radio-group">
+                        <div class="radio radio--plate">
+                            <input type="radio" name="Option3" id="option3_1" value="Yes">
+                            <label for="option3_1" class="control-label">Yes</label>
+                        </div>
+                        <div class="radio radio--plate">
+                            <input type="radio" name="Option3" id="option3_2" value="No">
+                            <label for="option3_2" class="control-label">No</label>
+                        </div>
+                    </div>
+                    
+                    <div class="center-block">
+                        @Html.ValidationMessageFor(m => m.Option3)
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="clearfix">
+                        <label for="comment" class="control-label">Please type your comment here</label>
+                        <span class="control-label pull-right _counter">140</span>
+                    </div>
+                    <textarea id="comment" name="Comment" maxlength="140" class="form-control" placeholder="Your comment"></textarea>
+                    @Html.ValidationMessageFor(m => m.Comment)        
+                </div>
+
+                <div class="form-submit">
+                    <div class="row">
+                        <div class="col-sm-8 automargin">
+                            <button class="btn btn--primary btn-block" type="submit" disabled>Vote</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
