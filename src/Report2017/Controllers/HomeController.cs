@@ -150,10 +150,10 @@ namespace Report2017.Controllers
             if (vote != null)
                 return RedirectToAction("Success");
 
-            var viewModel = new VoteViewModel
+            var viewModel = new MyVoteContract
             {
                 Token = id,
-                User = token.FullName
+                Name = token.FullName
             };
 
             return View("Vote", viewModel);
