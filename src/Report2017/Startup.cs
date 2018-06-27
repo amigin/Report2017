@@ -5,6 +5,7 @@ using Lykke.AzureQueueIntegration;
 using Lykke.Common.Api.Contract.Responses;
 using Lykke.Common.ApiLibrary.Middleware;
 using Lykke.Logs;
+using Lykke.MonitoringServiceApiCaller;
 using Lykke.SettingsReader;
 using Lykke.SlackNotification.AzureQueue;
 using Microsoft.AspNetCore.Authentication.Cookies;
@@ -15,7 +16,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
 using Report2017.Authentication;
 using Report2017.AzureRepositories;
 
@@ -23,12 +23,19 @@ namespace Report2017
 {
     public class Startup
     {
-        private IConfiguration _configuration;
+        private IConfigurationRoot Configuration { get; }
+        private IHostingEnvironment Environment { get; }
         private SettingsModel _settings;
+        private ILog _log;
 
-        public Startup(IConfiguration configuration)
+        public Startup(IHostingEnvironment env)
         {
-            _configuration = configuration;
+            Configuration = new ConfigurationBuilder()
+                .SetBasePath(env.ContentRootPath)
+                .AddEnvironmentVariables()
+                .Build();
+
+            Environment = env;
         }
 
         public void ConfigureServices(IServiceCollection services)
@@ -36,14 +43,14 @@ namespace Report2017
             services.AddMvc()
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
-            var settingsManager = _configuration.LoadSettings<SettingsModel>();
+            var settingsManager = Configuration.LoadSettings<SettingsModel>();
             _settings = settingsManager.CurrentValue;
             var connectionStringManager = settingsManager.ConnectionString(x => x.Report2017.VotesConnectionString);
 
-            var log = CreateLogWithSlack(services, settingsManager);
+            _log = CreateLogWithSlack(services, settingsManager);
 
-            services.AddSingleton(log);
-            services.BindAzureRepositories(connectionStringManager, log);
+            services.AddSingleton(_log);
+            services.BindAzureRepositories(connectionStringManager, _log);
 
             services.AddAuthentication(x =>
             {
@@ -63,14 +70,14 @@ namespace Report2017
                 x.ClientId = _settings.Report2017.Authentication.ClientId;
                 x.ClientSecret = _settings.Report2017.Authentication.ClientSecret;
                 x.CallbackPath = _settings.Report2017.Authentication.PostLogoutRedirectUri;
-                x.Events = new AuthEvent(log);
+                x.Events = new AuthEvent(_log);
                 x.Authority = _settings.Report2017.Authentication.Authority;
                 x.Scope.Add("email");
                 x.Scope.Add("profile");
             });
         }
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IApplicationLifetime appLifetime)
         {
             if (env.IsDevelopment())
             {
@@ -78,7 +85,29 @@ namespace Report2017
             }
             
             var appName = System.Reflection.Assembly.GetEntryAssembly().GetName().Name;
+            
+            appLifetime.ApplicationStarted.Register(() =>
+            {
+                try
+                {
+                    _log.WriteMonitor("StartApplication", null, "Application started");
 
+                    if (!env.IsDevelopment())
+                    {
+                        if (_settings.MonitoringServiceClient?.MonitoringServiceUrl == null)
+                            throw new ApplicationException("Monitoring settings is not provided.");
+
+                        AutoRegistrationInMonitoring.RegisterAsync(Configuration, _settings.MonitoringServiceClient.MonitoringServiceUrl, _log).GetAwaiter().GetResult();
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    _log.WriteFatalError("StartApplication", "", ex);
+                    throw;
+                }
+            });
+            
             app.UseLykkeMiddleware(appName, ex => ErrorResponse.Create("Technical problem"));
             app.UseLykkeForwardedHeaders();
             app.UseStaticFiles();
