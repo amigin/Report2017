@@ -1369,7 +1369,7 @@ h5 { line-height: 1.2; margin-bottom: 30px; font-size: 18px; }
 
 .radio-group:after, .radio-group:before { content: ""; display: table; clear: both; }
 
-.radio-group .radio { float: left; margin: 0; padding: 0 5px; width: 33.33%; }
+.radio-group .radio { float: left; margin: 0; padding: 0 5px; width: 50%; }
 
 @media all and (max-width: 543px) { .radio-group .radio { width: 100% !important; margin-bottom: 10px; } }
 
