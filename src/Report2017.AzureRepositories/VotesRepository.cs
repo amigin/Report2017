@@ -29,8 +29,8 @@ namespace Report2017.AzureRepositories
             var result = new VoteEntity
             {
                 PartitionKey = GeneratePartitionKey(),
-                RowKey = GenerateRowKey(src.Email),
-                Email = src.Email,
+                RowKey = GenerateRowKey(src.UserId),
+                Email = "---",
                 UserId = src.UserId,
                 Option1 = src.Option1,
                 Option2 = src.Option2,
