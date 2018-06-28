@@ -11,7 +11,6 @@ namespace Report2017.Models
         public VoteOption Option1 { get; set; }
         public VoteOption Option2 { get; set; }
         public VoteOption Option3 { get; set; }
-        [Required]
         public string Comment { get; set; }
         public string UserId { get; set; }
         public string Email { get; set; }

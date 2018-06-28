@@ -65,23 +65,18 @@ function resultsCounter() {
 function toggleRadio() {
   $(".form_vote .radio").on('click', function() {
     $(this).siblings('.radio').find('input').removeAttr('checked');
-    $(this).find('input').attr('checked', 'checked')
+    $(this).find('input').attr('checked', 'checked');
+    isSubmitEnabled();
   });
 }
 
 function isSubmitEnabled() {
     var checkedCount = $('.form_vote .radio input:checked').length;
-    if (checkedCount === 3 && $('.form_vote #comment').val().length) {
+    if (checkedCount === 3) {
         $('.form_vote .btn').removeAttr('disabled');
     } else {
         $('.form_vote .btn').attr('disabled', 'disabled');
     }
-}
-
-function checkComment() {
-    $(".form_vote #comment").on('keyup', function() {
-      isSubmitEnabled();
-    });
 }
 
 $(document).ready(function() {
@@ -91,5 +86,4 @@ $(document).ready(function() {
   textareaCounter();
   resultsCounter();
   toggleRadio();
-  checkComment();
 });

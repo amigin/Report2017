@@ -96,6 +96,9 @@ namespace Report2017.Controllers
             
             if (model.Option3 == VoteOption.NotSure)
                 ModelState.AddModelError(nameof(model.Option3), "Please answer this question");
+            
+            if (!string.IsNullOrEmpty(model.Comment) && model.Comment.Length > 500)
+                ModelState.AddModelError(nameof(model.Comment), "Your question is too long. Max 500 chars allowed");
 
             if (!ModelState.IsValid)
                 return View(model);
@@ -136,7 +139,6 @@ namespace Report2017.Controllers
         [HttpGet("/Vote/{id}")]
         public async Task<IActionResult> Vote([FromRoute] string id)
         {
-            //return Redirect(urlToRedirect);
             if (string.IsNullOrEmpty(id))
                 return RedirectToAction("Index");
 
