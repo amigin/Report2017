@@ -25,6 +25,7 @@
     <Folder Include="Models\" />
     <Folder Include="Authentication\" />
     <Folder Include="Helpers\" />
+    <Folder Include="wwwroot\Lykke_CoinholderMeeting_28.06.2018.pdf" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\css\site.css" />
