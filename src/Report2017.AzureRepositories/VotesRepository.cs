@@ -22,7 +22,7 @@ namespace Report2017.AzureRepositories
         public DateTime Created { get; set; }
         
         internal static string GeneratePartitionKey() => "v";
-        internal static string GenerateRowKey(string email) => email.ToLower();
+        internal static string GenerateRowKey(string userId) => userId;
 
         public static VoteEntity Create(IVote src)
         {
@@ -52,10 +52,10 @@ namespace Report2017.AzureRepositories
             _tableStorage = tableStorage;
         }
 
-        public async Task<IVote> GetAsync(string email)
+        public async Task<IVote> GetAsync(string userId)
         {
             var partitionKey = VoteEntity.GeneratePartitionKey();
-            var rowKey = VoteEntity.GenerateRowKey(email);
+            var rowKey = VoteEntity.GenerateRowKey(userId);
             return await _tableStorage.GetDataAsync(partitionKey, rowKey);
         }
 

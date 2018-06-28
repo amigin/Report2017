@@ -23,23 +23,11 @@ namespace Report2017.Helpers
 
             var claimsList = claims as IList<Claim> ?? claims.ToList();
 
-            var firstName = claimsList.Where(c => c.Type == ClaimTypes.GivenName)
-                   .Select(c => c.Value).SingleOrDefault();
-
-            var lastName = claimsList.Where(c => c.Type == ClaimTypes.Surname)
-                   .Select(c => c.Value).SingleOrDefault();
-
-            var email = claimsList.Where(c => c.Type == ClaimTypes.Email)
-                   .Select(c => c.Value).SingleOrDefault();
-
 			var userId = claimsList.Where(c => c.Type == ClaimTypes.NameIdentifier)
 				   .Select(c => c.Value).SingleOrDefault();
             
             var user = new TheUser
             {
-                Email = email,
-                FirstName = firstName,
-                LastName = lastName,
                 UserId = userId
             };
 

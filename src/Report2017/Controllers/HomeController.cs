@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.CodeAnalysis.Operations;
 using Report2017.Models;
 using Reports2017.Domains;
 
@@ -69,13 +68,11 @@ namespace Report2017.Controllers
         [Authorize]
         public async Task<IActionResult> Vote()
         {
-            var email = this.GetUserEmail();
-            var vote = await _votesRepository.GetAsync(email);
+            var user = this.GetUser();
+            var vote = await _votesRepository.GetAsync(user.UserId);
 
             if (vote != null)
                 return RedirectToAction("Success");
-
-            var user = this.GetUser();
 
             var viewModel = new MyVoteContract
             {
