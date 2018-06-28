@@ -13,7 +13,6 @@ namespace Report2017.Models
         public VoteOption Option3 { get; set; }
         public string Comment { get; set; }
         public string UserId { get; set; }
-        public string Email { get; set; }
         public DateTime Created => DateTime.UtcNow;
         public string Name { get; set; }
 

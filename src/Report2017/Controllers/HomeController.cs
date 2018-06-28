@@ -110,7 +110,6 @@ namespace Report2017.Controllers
                 if (user == null)
                     return RedirectToAction("Signin");
 
-                model.Email = user.Email;
                 model.UserId = user.UserId;
             }
             else
@@ -120,10 +119,9 @@ namespace Report2017.Controllers
                 if (token == null)
                     return RedirectToAction("Signin");
 
-                model.Email = token.Email;
             }
 
-            IVote vote = await _votesRepository.GetAsync(model.Email);
+            var vote = await _votesRepository.GetAsync(model.UserId);
 
             if (vote != null)
                 return RedirectToAction("Success");
