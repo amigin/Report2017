@@ -21,53 +21,61 @@ namespace Report2017.Controllers
         [HttpGet("/")]
         public IActionResult Index()
         {
-            var usereEmail = this.GetUserEmail();
+            return View("VotingOver");
+            /*var usereEmail = this.GetUserEmail();
 
             if (string.IsNullOrEmpty(usereEmail))
                 return RedirectToAction("Signin");
 
-            return RedirectToAction("Vote");
+            return RedirectToAction("Vote");*/
         }
 
         [Authorize]
         public IActionResult DoSignIn()
         {
+            return View("VotingOver");
             //return Redirect(urlToRedirect);
-            return RedirectToAction("Index");
+            //return RedirectToAction("Index");
         }
 
         [Authorize]
         public IActionResult Auth()
         {
+            return View("VotingOver");
             //return Redirect(urlToRedirect);
-            return RedirectToAction("Index");
+            //return RedirectToAction("Index");
         }
 
         [HttpGet("/Result")]
         public IActionResult Result()
         {
-            return Redirect(UrlToRedirect);
+            return View("VotingOver");
+            //return Redirect(UrlToRedirect);
             // return View();
         }
 
         [HttpGet("/Success")]
         public IActionResult Success()
         {
+            return View("VotingOver");
             //return Redirect(urlToRedirect);
-            return View();
+            //return View();
         }
 
         [HttpGet("/Signin")]
         public IActionResult Signin()
         {
+            return View("VotingOver");
             //return Redirect(urlToRedirect);
-            return View();
+            //return View();
         }
 
         [HttpGet("/Vote")]
         [Authorize]
         public async Task<IActionResult> Vote()
         {
+            return View("VotingOver");
+            /* 
             var user = this.GetUser();
             var vote = await _votesRepository.GetAsync(user.UserId);
 
@@ -78,28 +86,30 @@ namespace Report2017.Controllers
             {
                 Name = user.FirstName + " " + user.LastName
             };
-            
-            return View(viewModel);
+
+            return View(viewModel);*/
         }
 
         [HttpPost("/Vote")]
         public async Task<IActionResult> Vote(MyVoteContract model)
         {
+            return View("VotingOver");
+            /*
             if (model.Option1 == VoteOption.NotSure)
                 ModelState.AddModelError(nameof(model.Option1), "Please answer this question");
-            
+
             if (model.Option2 == VoteOption.NotSure)
                 ModelState.AddModelError(nameof(model.Option2), "Please answer this question");
-            
+
             if (model.Option3 == VoteOption.NotSure)
                 ModelState.AddModelError(nameof(model.Option3), "Please answer this question");
-            
+
             if (!string.IsNullOrEmpty(model.Comment) && model.Comment.Length > 500)
                 ModelState.AddModelError(nameof(model.Comment), "Your question is too long. Max 500 chars allowed");
 
             if (!ModelState.IsValid)
                 return View(model);
-            
+
             if (model.NotVoted())
                 return RedirectToAction("Vote");
 
@@ -129,11 +139,15 @@ namespace Report2017.Controllers
             await _votesRepository.VoteAsync(model);
 
             return RedirectToAction("Success");
+             */
         }
 
         [HttpGet("/Vote/{id}")]
         public async Task<IActionResult> Vote([FromRoute] string id)
         {
+            return View("VotingOver");
+
+            /* 
             if (string.IsNullOrEmpty(id))
                 return RedirectToAction("Index");
 
@@ -154,6 +168,7 @@ namespace Report2017.Controllers
             };
 
             return View("Vote", viewModel);
+            */
         }
     }
 }
